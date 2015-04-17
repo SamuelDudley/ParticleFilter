@@ -43,8 +43,11 @@ def twoRay(distance, frequency, transmitterHeight, receiverHeight, transmitterPo
     Pr = 10*np.log10(Pr)
     return Pr
 
-def cart_dist(x1,y1,z1,x2,y2,z2):
+def cart_dist3(x1,y1,z1,x2,y2,z2):
     return math.sqrt(((x2-x1)**2)+((y2-y1)**2)+((z2-z1)**2))
+
+def cart_dist2(x1,y1,x2,y2):
+    return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
 
 def x_dist(x1,x2):
     return (x2-x1)
