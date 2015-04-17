@@ -57,17 +57,21 @@ class Map(object):
         
         
         self.particles = []
-        for i in range(self.numberParticles):
-            self.particles.append(par.Particle())
-            self.particles[-1].state.x = random.uniform(self.world[0], self.world[1]) #randomise the x location of the particle
-            self.particles[-1].state.y = random.uniform(self.world[2], self.world[3]) #randomise the y location of the particle
-            self.particles[-1].state.z = random.uniform(self.world[4], self.world[5]) #randomise the z location of the particle
-            #self.particles[-1].state.groundSpeed = random.uniform(-10, -100) #randomise ground speed of the particle, heading is assumed to be known
-            self.particles[-1].state.groundSpeed = self.aircrafts[0].state.groundSpeed #randomise ground speed of the particle, heading is assumed to be known
-            
-    def step(self):
-        #move the plane
-        pass
+        for x in range(self.numberParticles):
+            particle  = par.Particle()
+            particle.state.x = random.uniform(self.world[0], self.world[1]) #randomise the x location of the particle
+            particle.state.y = random.uniform(self.world[2], self.world[3]) #randomise the y location of the particle
+            particle.state.z = random.uniform(self.world[4], self.world[5]) #randomise the z location of the particle
+            particle.state.groundSpeed = self.aircrafts[0].state.groundSpeed #randomise ground speed of the particle, heading is assumed to be known
+            particle.state.yaw = self.aircrafts[0].state.yaw #randomise ground speed of the particle, heading is assumed to be known
+            print particle.state.x, particle.state.y, particle.state.z, '0'
+            self.particles.append(particle)
+            print self.particles[-1].state.x, self.particles[-1].state.y, self.particles[-1].state.z, '1'
+
+        
+        for particle in self.particles:
+            print particle.state.x, particle.state.y, particle.state.z, '2'
+        
         
         
     def update(self):
@@ -161,10 +165,9 @@ class Map(object):
         #plt.ion() #non blocking plt.show()
         plt.figure()
         for particle in self.particles:
-            if particle.state.kill == False: 
-                plt.scatter(particle.state.x, particle.state.y, s=20, c='yellow')
-            else:
-                plt.scatter(particle.state.x, particle.state.y, s=10, c='yellow')
+            #print particle.state.x, particle.state.y
+            plt.scatter(particle.state.x, particle.state.y, s=20, c='yellow')
+
             #ax.arrow(particle.state.x,  particle.state.z, 0.5, 0.5, head_width=0.05, head_length=0.1, fc='k', ec='k')
         for aircraft in self.aircrafts:
             plt.scatter(aircraft.state.x, aircraft.state.y, s=40, c='blue')
@@ -176,10 +179,12 @@ class Map(object):
         
 
 test = Map()
+# for particle in test.particles:
+#      print particle.state.x, particle.state.y, '1'
 test.draw()
 test.update()
 count = 0
-while count < 2:
+while count < 0:
     test.step()
     test.update()
     test.draw()

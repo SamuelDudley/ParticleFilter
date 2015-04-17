@@ -1,4 +1,5 @@
 """This class describes a particle"""
+import numpy as np
 
 class PState(object):
     def __init__(self):
@@ -16,7 +17,7 @@ class PState(object):
 class Particle(object):
     def __init__(self):
         self.state  = PState
-        print "here"
+
         
     def move(self, timeDelta):
         self.state.x += timeDelta*(self.state.groundSpeed*np.sin(np.deg2rad(self.state.yaw)))

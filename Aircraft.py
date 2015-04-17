@@ -9,7 +9,7 @@ class AState(object):
         self.yaw = 25.
 
         self.airSpeed = -10
-        self.groundSpeed = 80
+        self.groundSpeed = 80.
         
         self.RSS = 0
 
