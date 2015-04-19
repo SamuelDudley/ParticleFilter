@@ -51,8 +51,33 @@ def cart_dist2(x1,y1,x2,y2):
 
 def x_dist(x1,x2):
     return (x2-x1)
-    
-    
+
+def angle(x1, y1, x2, y2):
+    dx = x2 - x1
+    dy = y2 - y1
+    rads = np.arctan2(dy,dx)
+    return np.degrees(rads)
+
+
+def comp_angle_rads(angle1, angle2):
+    rads = angle1-angle2
+    if rads < 0: #negitive
+        rads += 2*np.pi
+        
+    if abs(rads) > np.pi:
+        rads = 2*np.pi - abs(rads)
+        
+    return rads
+        
+def comp_angle_deg(angle1, angle2):
+    deg = angle1-angle2
+    if deg < 0: #negitive
+        deg += 360.
+        
+    if abs(deg) > 180.:
+        deg = 360. - abs(deg)
+        
+    return deg  
 
 def vinc_dist(  f,  a,  phi1,  lembda1,  phi2,  lembda2 ) :
     """ 

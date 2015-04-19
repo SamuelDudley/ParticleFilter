@@ -63,9 +63,6 @@ class Map(object):
             #self.particles[-1].state.groundSpeed = random.uniform(-10, -100) #randomise ground speed of the particle, heading is assumed to be known
             self.particles[-1].state.groundSpeed = self.aircrafts[0].state.groundSpeed #randomise ground speed of the particle, heading is assumed to be known
             
-    def step(self):
-        #move the plane
-        pass
         
         
     def update(self):
@@ -157,10 +154,7 @@ class Map(object):
         #plt.ion() #non blocking plt.show()
         plt.figure()
         for particle in self.particles:
-            if particle.state.kill == False: 
-                plt.scatter(particle.state.x, particle.state.z, s=20, c='yellow')
-            else:
-                plt.scatter(particle.state.x, particle.state.z, s=10, c='yellow')
+            plt.scatter(particle.state.x, particle.state.z, s=10, c='yellow')
             #ax.arrow(particle.state.x,  particle.state.z, 0.5, 0.5, head_width=0.05, head_length=0.1, fc='k', ec='k')
         for aircraft in self.aircrafts:
             plt.scatter(aircraft.state.x, aircraft.state.z, s=40, c='blue')

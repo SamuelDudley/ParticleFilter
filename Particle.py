@@ -2,7 +2,7 @@
 import numpy as np
 
 class PState(object):
-    def __init__(self):
+    def __init__(self, transmitterCount):
         self.x = 0
         self.y = 0
         self.z = 0
@@ -13,10 +13,18 @@ class PState(object):
         self.groundSpeed = 0
         
         
+        self.RSS = np.zeros(transmitterCount)
+        self.angle = np.zeros(transmitterCount)
+        self.RSSError = 0
+        self.angleError = 0
+        self.error = 0
+        self.selected = False
+        
+        
 
 class Particle(object):
-    def __init__(self):
-        self.state  = PState
+    def __init__(self, transmitterCount):
+        self.state  = PState(transmitterCount)
 
         
     def move(self, timeDelta):

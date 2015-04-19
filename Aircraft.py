@@ -1,6 +1,6 @@
 import numpy as np
 class AState(object):
-    def __init__(self):
+    def __init__(self, transmitterCount):
         self.x = 0
         self.y = 0
         self.z = 0
@@ -9,14 +9,18 @@ class AState(object):
         self.yaw = 25.
 
         self.airSpeed = -10
-        self.groundSpeed = 80.
+        self.groundSpeed = 20.
         
-        self.RSS = 0
+        self.RSS = np.zeros(transmitterCount)
+        self.angle = np.zeros(transmitterCount)
+        self.RSSError = 0
+        self.angleError = 0
+        self.error = 0
 
 
 class Aircraft(object):
-    def __init__(self):
-        self.state = AState()
+    def __init__(self, transmitterCount):
+        self.state = AState(transmitterCount)
         
 
     def move(self, timeDelta):

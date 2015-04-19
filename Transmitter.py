@@ -1,6 +1,7 @@
 
 class TState(object):
     def __init__(self):
+        self.id = None
         self.x = 0
         self.y = 0
         self.z = 0
