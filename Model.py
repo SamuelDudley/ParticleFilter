@@ -43,6 +43,11 @@ def twoRay(distance, frequency, transmitterHeight, receiverHeight, transmitterPo
     Pr = 10*np.log10(Pr)
     return Pr
 
+def freeSpace(distance,frequency, gain=15, exponent = 2):
+    #distance [m], frequency [MHz]
+    freeSpaceLoss = -32.44-20*math.log10(frequency)-20*math.log10(distance/1000.)
+    return freeSpaceLoss+gain
+
 def cart_dist3(x1,y1,z1,x2,y2,z2):
     return math.sqrt(((x2-x1)**2)+((y2-y1)**2)+((z2-z1)**2))
 

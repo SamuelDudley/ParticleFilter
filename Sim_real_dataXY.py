@@ -44,27 +44,30 @@ class Map(object):
         self.timeDelta = 1.0 #sec
         self.numberParticles = 1000
         
-        self.world = np.array([-3000,3000, #x dims
-                      -3000,3000, #y dims
+        self.world = np.array([136.536,136.552, #x dims
+                      -30.936,-30.9241, #y dims
                       0,200]) #z dims
         
        
         self.transmitters = np.array([tra.Transmitter()])
         
-        self.transmitters[-1].state.x = 0 #set the x location of the transmitter
-        self.transmitters[-1].state.y = 0 #set the x location of the transmitter
+        #north
+        self.transmitters[-1].state.x = 136.54462046921253 #set the x location of the transmitter
+        self.transmitters[-1].state.y = -30.92590749591904 #set the x location of the transmitter
         self.transmitters[-1].state.z = 2.35 #the z location of the transmitter [meters off the ground]
         self.transmitters[-1].state.id = len(self.transmitters)-1
-          
+        
+        #west
         self.transmitters = np.hstack((self.transmitters,np.array([tra.Transmitter()])))
-        self.transmitters[-1].state.x = 500 #set the x location of the transmitter
-        self.transmitters[-1].state.y = -100 #set the x location of the transmitter
+        self.transmitters[-1].state.x = 136.5386736765504 #set the x location of the transmitter
+        self.transmitters[-1].state.y = -30.927738983922794 #set the x location of the transmitter
         self.transmitters[-1].state.z = 4. #the z location of the transmitter [meters off the ground]
         self.transmitters[-1].state.id = len(self.transmitters)-1 
-         
+        
+        #south
         self.transmitters = np.hstack((self.transmitters,np.array([tra.Transmitter()])))
-        self.transmitters[-1].state.x = 1000 #set the x location of the transmitter
-        self.transmitters[-1].state.y = 1500 #set the x location of the transmitter
+        self.transmitters[-1].state.x = 136.54678132385015 #set the x location of the transmitter
+        self.transmitters[-1].state.y = -30.934927407856446 #set the x location of the transmitter
         self.transmitters[-1].state.z = 3. #the z location of the transmitter [meters off the ground]
         self.transmitters[-1].state.id = len(self.transmitters)-1
          
@@ -73,8 +76,8 @@ class Map(object):
 
         self.aircrafts = np.array([air.Aircraft(len(self.transmitters))])
         for aircraft in self.aircrafts:
-            aircraft.state.x = -100#random.uniform(300, 900) #randomise the x location of the aircraft
-            aircraft.state.y = 1400#random.uniform(300, 900) #randomise the y location of the aircraft
+            aircraft.state.x = random.uniform(136.536,136.552) #randomise the x location of the aircraft
+            aircraft.state.y = random.uniform(-30.936,-30.9241) #randomise the y location of the aircraft
             aircraft.state.z = random.uniform(50, 120) #randomise the z location of the aircraft
         
         
@@ -136,8 +139,8 @@ class Map(object):
             
         
     def assess(self):
-        angleWeight = 0.8
-        RSSWeight = .2
+        angleWeight = 0.
+        RSSWeight = 1.0
         for particle in self.particles:
             # values near to aircraft RSS measurement => 1, further away => 0
             for RSSIIndex in range(len(particle.state.RSS)):
@@ -148,7 +151,7 @@ class Map(object):
                 
             particle.state.error =  (angleWeight*particle.state.angleError) +(RSSWeight*particle.state.RSSError)
                 
-            sigma2 = 10. ** 2
+            sigma2 = 5. ** 2
             particle.state.error= math.e ** - (particle.state.error ** 2 / (2 * sigma2))
             
 
