@@ -28,6 +28,9 @@ def get_telem_data():
     Headder = []
     
     path_to_data = "/home/uas/Desktop/woomera/compolated/pol_soo_test1"
+    #path_to_data = "/home/uas/Desktop/woomera/compolated/soo_oct_wtr"
+#     path_to_data = "/home/uas/Desktop/woomera/cland2/flight_comp"
+
     ap_file = "ap_data7.hawk"
     ap_data_file_path = os.path.join(path_to_data, ap_file)
     count =0
@@ -92,7 +95,6 @@ def get_telem_data():
     northern_tx = northern_tx.reshape((len(northern_tx), 1))
     western_tx = western_tx.reshape((len(western_tx), 1))
     southern_tx = southern_tx.reshape((len(southern_tx), 1))
-    
     
     Data = np.append(Data, northern_tx, axis=1)
     Data = np.append(Data, western_tx, axis=1)

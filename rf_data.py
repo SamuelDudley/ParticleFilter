@@ -6,6 +6,8 @@ def get_rf_data():
     Headder = []
     
     path_to_data = "/home/uas/Desktop/woomera/compolated/pol_soo_test1"
+    #path_to_data = "/home/uas/Desktop/woomera/compolated/soo_oct_wtr"
+
     rf_file = "rf_ap_data7.hawk"
     rf_data_file_path = os.path.join(path_to_data, rf_file)
     
@@ -49,8 +51,8 @@ print index, value
 """
 if __name__ == '__main__':
     Data = get_rf_data()
-    xlim_lower = 600
-    xlim_upper = 610
+    xlim_lower = 100
+    xlim_upper = 3000
     x = Data[:,1]
     y1 = Data[:,6]#there is data at 6 (~1280), 59 (~1320) and 112 (~1360)
     y2 = Data[:,59]

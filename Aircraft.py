@@ -22,7 +22,10 @@ class Aircraft(object):
     def __init__(self, transmitterCount):
         self.state = AState(transmitterCount)
         
-
+    def update_location(self):
+        new_location = self.get_location_from_socket()
+        self.state.x = 
+    
     def move(self, timeDelta):
         self.state.x += timeDelta*(self.state.groundSpeed*np.sin(np.deg2rad(self.state.yaw)))
         self.state.y += timeDelta*(self.state.groundSpeed*np.cos(np.deg2rad(self.state.yaw)))
