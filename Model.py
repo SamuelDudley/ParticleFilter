@@ -12,6 +12,34 @@ def normalize_length(v):
 def normalize_values(v):
     return v/(np.max(v))
 
+# Earth radius at a given latitude, according to the WGS-84 ellipsoid [m]
+def earthRadius(lat,a,b):
+    # http://en.wikipedia.org/wiki/Earth_radius
+    An = a*a * math.cos(lat)
+    Bn = b*b * math.sin(lat)
+    Ad = a * math.cos(lat)
+    Bd = b * math.sin(lat)
+    return math.sqrt( (An*An + Bn*Bn)/(Ad*Ad + Bd*Bd) )
+
+
+
+def cartDistance(x,y):   
+    return np.sqrt(np.sum((x-y)**2))
+
+def convertStoC(lat, lon, esq, alt, h = 0):
+    x = math.cos(lat) * math.cos(lon) * (alt+h)
+    y = math.cos(lat) * math.sin(lon) * (alt+h)
+    z = math.sin(lat) * ((alt*(1-esq)) +h)# z is 'up'
+    return (x,y,z)
+
+def applyLatOffset(latr,latf):
+    latr = math.degrees(latr)
+    latf = math.degrees(latf)
+    latmod = 90+(latr)-(latf)
+    if latmod >90:
+        latmod= 90 - (latmod-90)
+    return math.radians(latmod)
+
 def twoRay(distance, frequency, transmitterHeight, receiverHeight, transmitterPower, transmitterGain =1, receiverGain=1):
 #     print ""
 #     print distance, frequency, transmitterPower, transmitterGain, receiverGain, transmitterHeight, receiverHeight

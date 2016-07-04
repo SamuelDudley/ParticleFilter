@@ -1,0 +1,46 @@
+Passive angle of arrival estimation using phase diffence of arrival.
+Limits:
+One aircraft, not multipule
+passive, no transmission
+assume transmitter of intrest is non-cooperative
+static target?
+Culating angle of arrival using phase diffrences in an array
+We have an array which consists of a number of independant elements. the individual reciving elements are arranged in a known geomertry and are connected to a centeralised receiver. (USRP X300 fitted with 2 x TwinRX cards).
+We assume the RF energy is emmited from the target.
+
+in the far field we can think of this as a surface expading from the point. The further the surface travels from the point source the greater the radius of curvature of the surface. Given an receiving array which is sufficently far from the source we can assme that the incedent wave is a flat plane with a normal vector pointed towards the source.
+
+we select a point which is taken to be the grometric center of the antenna array. we then create normal venctors from the plane towards the array elements and compair the lenghts. The diffencences in length are eqivilant to the added distance traveled by the plane wave to reach each of the antenna elements.
+
+depending on the spacing of the antennas and the frequency of the signal in question there may be greater than one wavelength between the normal path length diffrences.
+
+the true phase diffences between two reciving elements:\triangle\phi{}_{A12}
+  is equivilant to \triangle\phi'{}_{A12}+i2\pi
+  where i
+  is an interger in the range -n\leq i\leq n
+ .
+
+We calculate the phase diffrence between two of the antennas
+
+d=\frac{\cos u\sin v\left(p1x-p2x\right)+\sin u\sin v\left(p1y-p2y\right)+\cos v\left(p1z-p2z\right)}{\sqrt{\left(\cos u\sin v\right)^{2}+\left(\sin u\sin v\right)^{2}+\left(\cos v\right)^{2}}}
+ 
+
+Method:
+
+Setup an array to consist of three linear components and one extra component
+
+we will use the linear component of the array to solve for possible amberguity combinations
+
+-> This gives us a list of possible I_{1}
+ ,I_{2}
+  combinations.
+
+-> On the elevation / azmeth plot these graphs, which will all ideally overlap
+
+-> Use the 4th antenna to generate three more plots on the ele / az plot based on the I_{1}
+ ,I_{2}
+ values that have been solved for above. Where these values commonly intersect is the true source location (in elevation and azmeth releitve to the antenna array)
+
+-> This method oftern results in a 'mirror' solution which will need to be determined and ignored from the solution.
+
+parametric representation...

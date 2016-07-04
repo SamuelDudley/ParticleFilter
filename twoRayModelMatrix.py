@@ -209,7 +209,7 @@ def cartDistance(x1,y1,z1,x2,y2,z2):
         dist = math.sqrt(((x2-x1)**2)+((y2-y1)**2)+((z2-z1)**2))
         return dist
 
-def convertStoC(lat, lon, esq, alt, h):
+def convertStoC(lat, lon, esq, alt, h = 0):
         x = math.cos(lat) * math.cos(lon) * (alt+h)
         y = math.cos(lat) * math.sin(lon) * (alt+h)
         z = math.sin(lat) * ((alt*(1-esq)) +h)# z is 'up'
@@ -269,8 +269,8 @@ for i in range(len(altArray)):
     h1 = altArray[i]
     alt1Array.append(alt1)
 
-    (x1, y1, z1) = convertStoC(applyLatOffset(math.radians(latArray[i]),antennaGCSLat),math.radians(lonArray[i]),WGS84_esq,alt1,h1)
-    (x2, y2, z2) = convertStoC(applyLatOffset(antennaGCSLat,antennaGCSLat),antennaGCSLon,WGS84_esq,alt2,h2)
+    (x1, y1, z1) = convertStoC(applyLatOffset(math.radians(latArray[i]),antennaGCSLat),math.radians(lonArray[i]),WGS84_esq,alt1,h = h1)
+    (x2, y2, z2) = convertStoC(applyLatOffset(antennaGCSLat,antennaGCSLat),antennaGCSLon,WGS84_esq,alt2,h = h2)
 
     xe.append(x1)
     ye.append(y1)
