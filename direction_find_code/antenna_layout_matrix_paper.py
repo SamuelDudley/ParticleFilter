@@ -137,7 +137,7 @@ b = (lamba) *       np.array([np.modf(z1_measured[0][0])[0],
 
 
 sol = np.dot(np.linalg.inv(np.dot(A.T,A)),np.dot(A.T,b))
-print sol
+print 'sol',sol
 u_1 = sol[0]
 v_1 = sol[1]
 
